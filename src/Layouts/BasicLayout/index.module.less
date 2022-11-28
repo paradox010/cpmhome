@@ -1,0 +1,23 @@
+@import '@/style/tool.less';
+
+.footer {
+  margin-top: 1rem;
+  background: #1e1f21;
+  color: #e0e0e0;
+  font-size: 0.8rem;
+}
+.footerLinks {
+  .defaultWidth();
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bLayout {
+  :global {
+    .ant-menu-overflow {
+      flex-direction: row-reverse;
+    }
+  }
+}

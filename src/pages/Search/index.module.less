@@ -1,0 +1,108 @@
+@import '@/style/tool.less';
+
+.main {
+  .defaultWidth();
+  padding: 24px 0;
+}
+.content {
+  background-color: #fafafa;
+  margin-top: 20px;
+  em {
+    font-style: inherit;
+    color: red;
+  }
+  .segWrap {
+    background: #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0, 21, 41, 0.12);
+  }
+  :global {
+    .ant-list {
+      padding: 0 20px 20px;
+      background-color: #fff;
+    }
+    .ant-segmented {
+      background: none !important;
+      padding: 0;
+    }
+    .ant-segmented-item {
+      margin: 0 10px 0 20px;
+    }
+    .ant-segmented-item-label {
+      padding: 1rem 0;
+      min-height: 1.2rem;
+      font-size: 15px;
+      line-height: 1.571;
+    }
+    .ant-segmented-item-selected {
+      background: none;
+      box-shadow: none;
+      color: #1492ff;
+      &:before {
+        content: '';
+        height: 3px;
+        width: 100%;
+        border-radius: 0;
+        background-color: #1492ff;
+        position: absolute;
+        top: calc(100% - 3px);
+        left: 0;
+      }
+    }
+    .ant-segmented-item:hover,
+    .ant-segmented-item:focus {
+      color: #1492ff;
+    }
+    .ant-segmented-thumb {
+      height: 3px;
+      padding: 0;
+      border-radius: 0;
+      top: calc(100% - 3px);
+      box-shadow: none;
+      background-color: #1492ff;
+    }
+    .ant-list-item-meta-title {
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .ds-badge {
+      &.ant-badge-not-a-wrapper:not(.ant-badge-status) {
+        vertical-align: sub;
+        margin-left: 5px;
+      }
+      .ant-badge-count {
+        background: #f3f3f3;
+        color: #929292;
+        transition: all 0.3s;
+      }
+    }
+    .ant-segmented-item-selected .ds-badge,
+    .ant-segmented-item:hover .ds-badge,
+    .ant-segmented-item:focus .ds-badge {
+      .ant-badge-count {
+        background: rgba(24, 144, 255, 0.15);
+        color: #1890ff;
+      }
+    }
+  }
+}
+// .listWrap {
+// }
+
+.filterForm {
+  :global {
+    :where(.css-dev-only-do-not-override-1f5mm26).ant-pro-form-list-action {
+      margin-block-end: 16px;
+    }
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+  }
+}
+.searchCollapse {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.57;
+  a {
+    margin-left: 10px;
+  }
+}

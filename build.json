@@ -1,0 +1,28 @@
+{
+  "vite": true,
+  "outputDir": "dist",
+  "define": {
+    "process.env.ANTD_VERSION": "4.24.1"
+  },
+  "proxy": {
+    "/api": {
+      "enable": true,
+      "target": "http://121.37.179.208:8003/"
+    }
+  },
+  "plugins": [
+    [
+      "build-plugin-ignore-style",
+      {
+        "libraryName": "antd"
+      }
+    ],
+    [
+      "build-plugin-antd",
+      {
+        "disableModularImport": true,
+        "themeConfig": {}
+      }
+    ]
+  ]
+}
