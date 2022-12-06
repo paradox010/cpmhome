@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Radio, Table } from 'antd';
+import { Radio, Table, Tooltip } from 'antd';
 import { attrEnum, attrTypeEnum } from '@/dataType';
 
 const columns = [
@@ -7,6 +7,8 @@ const columns = [
     title: '序号',
     dataIndex: '_num',
     key: '_num',
+    width: 80,
+    render: (_, __, i) => i + 1,
   },
   {
     title: '属性编码',
@@ -28,12 +30,37 @@ const columns = [
     title: '单位',
     dataIndex: 'unit',
     key: 'unit',
+    render: (text) => text || '/',
   },
   {
     title: '编码-值',
     dataIndex: 'value',
     key: 'value',
-    render: (text) => text?.split('；')?.map((v, i) => <div key={i}>{v}</div>),
+    render: (text) => {
+      if (!text) return '/';
+      if (text?.split('；')?.length > 5) {
+        return (
+          <Tooltip
+            title={
+              <div style={{ maxHeight: '30vh', overflow: 'auto' }}>
+                {text?.split('；')?.map((v, i) => (
+                  <div key={i}>{v}</div>
+                ))}
+              </div>
+            }
+          >
+            {text
+              ?.split('；')
+              ?.filter((_, i) => i < 5)
+              ?.map((v, i) => (
+                <div key={i}>{v}</div>
+              ))}
+            <div>...</div>
+          </Tooltip>
+        );
+      }
+      return text?.split('；')?.map((v, i) => <div key={i}>{v}</div>);
+    },
   },
 ];
 
@@ -49,9 +76,9 @@ const AttrTable = ({ data }) => {
         ))}
       </Radio.Group>
       <Table
-        scroll={{
-          y: 'calc(60vh - 40px)',
-        }}
+        // scroll={{
+        //   y: 'calc(400px - 40px)',
+        // }}
         className="attr-60-40"
         pagination={false}
         dataSource={data?.featureInfo?.[radio] || []}

@@ -1,40 +1,19 @@
 module.exports = {
-  '/api/highFreWords': {
-    header: { code: 200 },
-    body: [
-      {
-        value: '高频词',
-      },
-      {
-        value: '高频词3',
-      },
-    ],
-  },
-  '/api/search/count': {
-    header: { code: 200 },
-    body: {
-      total: 99,
-      stand: 23,
-    },
-  },
-  '/api/search': {
-    header: { code: 200 },
-    body: {
-      list: [
-        {
-          name: '泵阀（水暖阀门）行业产品主数据标准  V1.4',
-          id: '1',
-          type: 'stand',
-        },
-        {
-          name: '泵阀（水暖阀门）行业产品主数据标准  V1.4',
-          id: '2',
-          type: 'stand',
-        },
-      ],
-      page: 1,
-    },
-  },
+  // '/api/home/complexSearch/search': {
+  //   header: {
+  //     code: 200,
+  //   },
+  //   body: {
+  //     total: 10,
+  //     list: [
+  //       {
+  //         type: '1',
+  //         name: '111',
+  //         hotSort: '123',
+  //       },
+  //     ],
+  //   },
+  // },
   '/api/getRepos': {
     dataSource: [
       {

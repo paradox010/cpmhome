@@ -2,6 +2,7 @@ import { request, history } from 'ice';
 import { useRequest } from 'ahooks';
 
 import styles from './index.module.less';
+import { Skeleton } from 'antd';
 
 async function getList() {
   const resData = await request({
@@ -11,18 +12,18 @@ async function getList() {
 }
 
 const Stand = () => {
-  const { data } = useRequest(getList);
+  const { data, loading } = useRequest(getList);
   const onMore = (order = 'hotSort') => {
-    history?.push(`/search?${order}=true&allType=1,2`);
+    history?.push(`/search?${order}=true&allType=1,2,7`);
   };
   const onDetail = (id) => {
-    history?.push(`/detail?domainId=${id}`);
+    history?.push(`/detail?domainId=${id}&noSearch=1`);
   };
   return (
     <>
       <div className={styles.flexContentTitle}>
-        <div>标准发布</div>
-        <div className={styles.bgTitle}>Standard Center</div>
+        <div>标准服务</div>
+        {/* <div className={styles.bgTitle}>Standard Center</div> */}
       </div>
       <div className={styles.flexContent}>
         <div>
@@ -32,9 +33,16 @@ const Stand = () => {
           </div>
           <div className={styles.list}>
             {data?.hotStandard.map((v, index) => (
-              <div key={v.id} className={styles.listItem} onClick={() => onDetail(v.id)}>
+              <div
+                title={`${v.name}【版本V${v.version}】`}
+                key={v.id}
+                className={styles.listItem}
+                onClick={() => onDetail(v.id)}
+              >
                 <span className={styles.iNum}>{index + 1}</span>
-                <span className={styles.listName}>{v.name}</span>
+                <span className={styles.listName}>
+                  {v.name}【版本V{v.version}】
+                </span>
                 <span className={styles.date}>{v.pubDate}</span>
               </div>
             ))}
@@ -47,15 +55,23 @@ const Stand = () => {
           </div>
           <div className={styles.list}>
             {data?.newStandard.map((v, index) => (
-              <div key={v.id} className={styles.listItem} onClick={() => onDetail(v.id)}>
+              <div
+                title={`${v.name}【版本V${v.version}】`}
+                key={v.id}
+                className={styles.listItem}
+                onClick={() => onDetail(v.id)}
+              >
                 <span className={styles.iNum}>{index + 1}</span>
-                <span className={styles.listName}>{v.name}</span>
+                <span className={styles.listName}>
+                  {v.name}【版本V{v.version}】
+                </span>
                 <span className={styles.date}>{v.pubDate}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
+      {loading && <Skeleton active />}
     </>
   );
 };

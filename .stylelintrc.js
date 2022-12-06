@@ -5,11 +5,16 @@ module.exports = getStylelintConfig('rax', {
   customSyntax: 'postcss-less',
   extends: ['stylelint-config-recommended-less'],
   rules: {
-    'at-rule-no-unknown': null,
+    // 'at-rule-no-unknown': null,
     // 'less/color-no-invalid-hex': true,
     // 'less/no-duplicate-variables': true,
     // 'function-calc-no-invalid': null,
-    'selector-pseudo-class-no-unknown': null,
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
     'length-zero-no-unit': null,
   },
 });

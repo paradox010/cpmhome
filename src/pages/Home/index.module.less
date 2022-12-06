@@ -8,6 +8,9 @@
 .search {
   min-height: 16rem;
   background: #6f7fa1;
+  background-image: url('@/assets/bannerBg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .searchContent {
@@ -71,7 +74,7 @@
     top: -2rem;
 
     /* stylelint-disable-next-line less/color-no-invalid-hex, less/no-duplicate-variables */
-    each(range(6), {
+    each(range(5), {
       .card:nth-child(@{value}):before {
         background-image: url('@/assets/i@{value}.png');
         background-size: contain;
@@ -92,6 +95,12 @@
         top: 1.65rem;
         // background-image: url('@/assets/i1.png');
       }
+      :global(.ant-statistic-content) {
+        font-size: 1.4rem;
+        line-height: 1;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.85);
+      }
       .cardNum {
         font-size: 1.4rem;
         line-height: 1;
@@ -99,7 +108,7 @@
         color: rgba(0, 0, 0, 0.85);
       }
       .title {
-        font-size: 0.7rem;
+        font-size: 1rem;
         line-height: 1.57;
         font-weight: 400;
         color: rgba(0, 0, 0, 0.65);
@@ -133,9 +142,12 @@
     float: right;
     font-weight: 400;
     color: #999;
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1.375;
-    padding-top: 0.7rem;
+    padding-top: 0.8rem;
+    &:hover {
+      color: #1890ff;
+    }
   }
   & > div {
     flex: 0 0 48%;
@@ -146,13 +158,21 @@
     .listItem {
       padding: 0.6rem 0.8rem;
       color: #000;
-      font-size: 0.8rem;
+      font-size: 1rem;
       display: flex;
       align-items: baseline;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .listItem:hover {
+      box-shadow: inset 0px -3px 5px 0px #00000029;
     }
     .listItem:nth-child(odd) {
       background: #f8f9fa;
     }
+    // .listItem:nth-child(even) {
+    //   background: #fff;
+    // }
     .iNum {
       margin-right: 0.8rem;
       display: inline-block;
@@ -179,8 +199,9 @@
       text-overflow: ellipsis;
     }
     .date {
+      padding-left: 10px;
       color: #a3a3ac;
-      font-size: 0.7rem;
+      font-size: 0.9rem;
     }
   }
 }
@@ -199,7 +220,7 @@
     right: 0;
     height: 4px;
     width: 40%;
-    background: #b0b0b0;
+    background: #c7c7c7;
   }
   &:after {
     content: '';
@@ -212,6 +233,133 @@
   }
 }
 
+.itemContent {
+  width: 100%;
+  overflow: hidden;
+}
+
+@squaHeight: 10px;
+@csquaHeight: 9px;
+.cardTag {
+  position: absolute;
+  transform: rotate(45deg);
+  right: -22px;
+  top: 0;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #bcbcbc;
+    bottom: 0;
+    left: 1px;
+    transform: rotate(45deg);
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #bcbcbc;
+    bottom: 0;
+    right: 1px;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+  .borderUp {
+    width: 0;
+    height: 0;
+    border-top: @squaHeight solid transparent;
+    border-left: @squaHeight solid transparent;
+    border-bottom: @squaHeight solid #b7eb8f;
+    border-right: @squaHeight solid #b7eb8f;
+    position: relative;
+    display: inline-block;
+    transform: translate(0px, 5px);
+    span {
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      left: -8px;
+      top: -9px;
+      border-top: @csquaHeight solid transparent;
+      border-left: @csquaHeight solid transparent;
+      border-bottom: @csquaHeight solid #f6ffed;
+      border-right: @csquaHeight solid #f6ffed;
+    }
+  }
+  .borderDown {
+    width: 0;
+    height: 0;
+    border-top: @squaHeight solid transparent;
+    border-right: @squaHeight solid transparent;
+    border-bottom: @squaHeight solid #b7eb8f;
+    border-left: @squaHeight solid #b7eb8f;
+    position: relative;
+    display: inline-block;
+    transform: translate(0px, 5px);
+    span {
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      left: -11px;
+      top: -9px;
+      border-top: @csquaHeight solid transparent;
+      border-right: @csquaHeight solid transparent;
+      border-bottom: @csquaHeight solid #f6ffed;
+      border-left: @csquaHeight solid #f6ffed;
+    }
+  }
+  .borderCenter {
+    display: inline-block;
+    background: #f6ffed;
+    border: 1px solid #b7eb8f;
+    border-left: none;
+    line-height: 18px;
+    width: 30px;
+    height: 20px;
+    vertical-align: -5px;
+  }
+  .borderText {
+    position: absolute;
+    color: #52c41a;
+    font-size: 12px;
+    top: 7px;
+    left: 17px;
+    z-index: 1;
+    font-weight: bold;
+  }
+  &.blue {
+    .borderUp {
+      border-bottom: @squaHeight solid #ffe58f;
+      border-right: @squaHeight solid #ffe58f;
+      span {
+        border-bottom: @csquaHeight solid #fffbe6;
+        border-right: @csquaHeight solid #fffbe6;
+      }
+    }
+    .borderDown {
+      border-bottom: @squaHeight solid #ffe58f;
+      border-left: @squaHeight solid #ffe58f;
+      span {
+        border-bottom: @squaHeight solid #fffbe6;
+        border-left: @squaHeight solid #fffbe6;
+      }
+    }
+    .borderCenter {
+      background: #fffbe6;
+      border: 1px solid #ffe58f;
+    }
+    .borderText {
+      color: #d97a1f;
+    }
+  }
+}
+
 .indus {
   padding-top: 2.5rem;
   padding-bottom: 2rem;
@@ -220,6 +368,9 @@
   padding-bottom: 2rem;
   .more {
     cursor: pointer;
+    &:hover {
+      color: #1890ff;
+    }
   }
 }
 .indusContent {
@@ -238,7 +389,7 @@
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    margin-top: 1.1rem;
+    margin-top: 0.5rem;
     padding: 0 2px;
     & > div {
       flex: 0 0 47%;
@@ -257,7 +408,7 @@
     }
     :global {
       .ant-statistic-title {
-        font-size: 0.6rem;
+        font-size: 0.9rem;
         margin-bottom: 0;
       }
     }
@@ -268,7 +419,7 @@
       background: #fff;
     }
     .ant-tabs-nav {
-      width: 10.75rem;
+      width: 11.75rem;
       min-height: 37.5rem;
       background: #fff;
       box-shadow: 7px 2px 19px 0px rgba(74, 127, 173, 0.28);
@@ -283,7 +434,7 @@
       }
     }
     /* stylelint-disable-next-line less/color-no-invalid-hex, less/no-duplicate-variables */
-    each(range(6), {
+    each(range(7), {
       .ant-tabs-tab:nth-child(@{value}):before {
         background-image: url('@/assets/@{value}.png');
         background-size: contain;
@@ -319,19 +470,24 @@
     .ant-list-items {
       display: flex;
       width: 100%;
-      min-height: 35.6rem;
+      min-height: 42rem;
       padding: 1.2rem 3% 0;
       overflow-x: hidden;
       flex-wrap: wrap;
       align-content: flex-start;
+      :global(.ds-version) {
+        margin: 0.4rem 0 0;
+        font-size: 1rem;
+        color: #535353;
+      }
       .ant-list-item {
+        width: 0;
         display: block;
         flex: 0 0 31%;
-        height: 7.4rem;
+        height: 8.8rem;
         margin-right: 2%;
         margin-bottom: 1.2rem;
         padding: 1.2rem;
-        overflow: hidden;
         border-radius: 2px;
         border: 1px solid #dfdfdd;
         background-image: url('@/assets/cardBg.png');
@@ -356,17 +512,18 @@
 .affix {
   position: absolute;
   top: 18rem;
-  right: 6vw;
+  right: min(calc(50vw - 37vw - 110px), calc(50vw - 550px - 110px));
   .linkWrap {
     display: flex;
     flex-direction: column;
     background: #fff;
     box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
-    padding: 0.4rem;
+    padding: 8px;
+    font-size: 15px;
   }
   .linkItem {
-    padding: 0.8rem 0.6rem;
+    padding: 14px 10px;
     border-radius: 2px;
     text-align: center;
     cursor: pointer;
@@ -377,13 +534,18 @@
       height: 1.65rem;
       margin-bottom: 5px;
       display: block;
-      background-image: url('@/assets/i1.png');
+      background-image: url('@/assets/expert.png');
       background-size: cover;
       image-rendering: -webkit-optimize-contrast;
     }
   }
+  .linkItem + .linkItem {
+    &:before {
+      background-image: url('@/assets/liansy.png');
+    }
+  }
   .linkItem:first-child {
-    margin-bottom: 0.5rem;
+    margin-bottom: 10px;
     background: #f1f8ff;
   }
 }

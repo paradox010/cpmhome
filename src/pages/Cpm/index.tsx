@@ -6,13 +6,15 @@ import Tree from './Tree';
 import Attr from './Attr';
 
 import { useRequest } from 'ahooks';
-import { request } from 'ice';
+import { Link, request } from 'ice';
 
 import { getParams } from '@/utils/location';
 
 async function getTree() {
   const resData = await request({
-    url: `/api/home/productCategoryRelease/getTree?domainId=${getParams()?.domainId}`,
+    url: `/api/home/productCategoryRelease/getTree?domainId=${getParams()?.domainId}&categoryId=${
+      getParams()?.selected || ''
+    }`,
   });
   return resData;
 }
@@ -24,16 +26,18 @@ export default () => {
       <div className={styles.main}>
         <Breadcrumb>
           <Breadcrumb.Item>
-            <a href="/">首页</a>
+            <Link to="/home">首页</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a href="/search">搜索</a>
-          </Breadcrumb.Item>
+          {!getParams()?.noSearch && (
+            <Breadcrumb.Item>
+              <Link to="/search">搜索</Link>
+            </Breadcrumb.Item>
+          )}
           <Breadcrumb.Item>详情</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.content}>
           <div className={styles.headerTitle}>
-            {data?.domain?.name} V{data?.domain?.version}
+            {data?.domain?.name} <span className="ds-version">V{data?.domain?.version}</span>
           </div>
           <div>
             <div className={styles.desLabel}>发布时间：{data?.domain?.pubDate}</div>

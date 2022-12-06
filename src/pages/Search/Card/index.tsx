@@ -1,15 +1,17 @@
 import { SwapRightOutlined } from '@ant-design/icons';
 import { List } from 'antd';
 import styles from './index.module.less';
+import hotImage from '@/assets/hot.png';
 
 function renderSub(t, item) {
   switch (`${t}`) {
     case '1':
     case '2':
+    case '7':
       return (
         <>
           <div>
-            <div className={styles.desLabel}>制定者：{item?.teamName}</div>
+            <div className={styles.desLabel}>制订者：{item?.teamName}</div>
             <div className={styles.desLabel} style={{ minWidth: 120 }}>
               产品类目：{item?.categoryCount || 0}个
             </div>
@@ -18,9 +20,6 @@ function renderSub(t, item) {
             </div>
             <div className={styles.desLabel}>发布时间：{item?.pubDate}</div>
           </div>
-          <a href={`/detail?domainId=${item.id}`} target="_blank" rel="noreferrer">
-            查看详情 <SwapRightOutlined />
-          </a>
         </>
       );
     case '3':
@@ -33,9 +32,6 @@ function renderSub(t, item) {
               <span className="ds-version">V{item.domainVersion}</span>
             </div>
           </div>
-          <a href={`/detail?domainId=${item.domainReleaseId}&selected=${item.id}`} target="_blank" rel="noreferrer">
-            查看详情 <SwapRightOutlined />
-          </a>
         </>
       );
     case '5':
@@ -49,13 +45,6 @@ function renderSub(t, item) {
               <span className="ds-version">V{item.domainVersion}</span>
             </div>
           </div>
-          <a
-            href={`/detail?domainId=${item.domainReleaseId}&selected=${item.categoryReleaseId}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            查看详情 <SwapRightOutlined />
-          </a>
         </>
       );
     default:
@@ -69,11 +58,33 @@ function renderTitle(item) {
   return item.name;
 }
 export default ({ item }) => {
+  let href = `/detail?domainId=${item.id}`;
+  switch (`${item.type}`) {
+    case '3':
+    case '4':
+      href = `/detail?domainId=${item.domainReleaseId}&selected=${item.id}`;
+      break;
+    case '5':
+    case '6':
+      href = `/detail?domainId=${item.domainReleaseId}&selected=${item.categoryReleaseId}`;
+      break;
+    default:
+      break;
+  }
+
   return (
     <List.Item>
       <List.Item.Meta
         // eslint-disable-next-line react/no-danger
-        title={<div dangerouslySetInnerHTML={{ __html: renderTitle(item) }} />}
+        title={
+          <div className={styles.title}>
+            <a target="_blank" rel="noreferrer" href={href} dangerouslySetInnerHTML={{ __html: renderTitle(item) }} />
+            <span style={{ fontSize: 14, marginLeft: 20, whiteSpace: 'nowrap' }}>
+              <img src={hotImage} style={{ margin: '0 5px', verticalAlign: -5 }} />
+              热力值：{item.hotSort}
+            </span>
+          </div>
+        }
         description={<div className={styles.content}>{renderSub(item.type, item)}</div>}
       />
     </List.Item>

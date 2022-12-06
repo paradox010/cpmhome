@@ -1,4 +1,4 @@
-import { Tabs, Statistic, List, Affix, Button } from 'antd';
+import { Tabs, Statistic, List, Affix, Button, Typography, Tooltip } from 'antd';
 import styles from './index.module.less';
 import { history, request } from 'ice';
 import Search from '../Search/Search';
@@ -27,7 +27,7 @@ export default () => {
     window.open('http://121.37.179.208:8002/', 'target');
   };
   const goStand = (id) => {
-    history?.push(`/detail?domainId=${id}`);
+    history?.push(`/detail?domainId=${id}&noSearch=1`);
   };
   const clickSearch = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ export default () => {
       <div className={styles.indus}>
         <div className={styles.indusContent}>
           <Stand />
-          <div className={styles.cardTitle}>标准导航</div>
+          <div className={styles.cardTitle}>产品主数据标准导航</div>
           <Tabs
             tabPosition={'left'}
             items={standData?.map((v) => ({
@@ -79,15 +79,48 @@ export default () => {
                   renderItem={(k: any) => (
                     <List.Item
                       onClick={() => goStand(k.domainReleaseId)}
-                      style={k.categoryCount ? { cursor: 'pointer' } : { pointerEvents: 'none', cursor: 'not-allowed' }}
+                      style={
+                        k.categoryCount
+                          ? { cursor: 'pointer', position: 'relative' }
+                          : { pointerEvents: 'none', cursor: 'not-allowed', position: 'relative' }
+                      }
                     >
-                      <div className={styles.title}>{k.domainName}</div>
-                      <div className={styles.subAttr}>
-                        <div className={styles.border}>
-                          <Statistic title="产品类目" value={k.categoryCount || '-'} />
+                      {k.status === 1 || k.status === 2 ? (
+                        <div className={`${styles.cardTag} ${k.status === 1 ? styles.blue : null}`}>
+                          <div className={styles.borderUp}>
+                            <span />
+                          </div>
+                          <div className={styles.borderCenter} />
+                          <div className={styles.borderDown}>
+                            <span />
+                          </div>
+                          <div className={styles.borderText}>{k.status === 1 ? '建设中' : '已发布'}</div>
                         </div>
-                        <div>
-                          <Statistic title="产品属性" value={k.featureCount || '-'} />
+                      ) : null}
+
+                      <div className={styles.itemContent}>
+                        <Tooltip title={k.domainName}>
+                          <div className={styles.title}>{k.domainName}</div>
+                        </Tooltip>
+                        {/* <Typography.Text
+                          style={{
+                            fontWeight: 500,
+                            fontSize: 17,
+                            lineHeight: 1.1,
+                            color: '#000',
+                          }}
+                          ellipsis={{ tooltip: 'teee' }}
+                        >
+                          {k.domainName}
+                        </Typography.Text> */}
+                        <span className="ds-version">{k.domainVersion ? `版本号：V${k.domainVersion}` : '版本号：- '}</span>
+                        <div className={styles.subAttr}>
+                          <div className={styles.border}>
+                            <Statistic title="产品类目" value={k.categoryCount || '-'} />
+                          </div>
+                          <div>
+                            <Statistic title="产品属性" value={k.featureCount || '-'} />
+                          </div>
                         </div>
                       </div>
                     </List.Item>
