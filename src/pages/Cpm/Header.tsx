@@ -23,10 +23,10 @@ export default ({ data }) => {
           {data?.name}
         </Descriptions.Item>
         <Descriptions.Item label="描述" labelStyle={{ width: 150 }}>
-          {data?.description}
+          {data?.description || '-'}
         </Descriptions.Item>
         <Descriptions.Item label="应用实例" labelStyle={{ width: 150 }}>
-          -
+          此处展示企业产品实例，虚位以待!
         </Descriptions.Item>
       </Descriptions>
     </div>

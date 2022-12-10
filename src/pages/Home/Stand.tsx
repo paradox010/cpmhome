@@ -17,7 +17,7 @@ const Stand = () => {
     history?.push(`/search?${order}=true&allType=1,2,7`);
   };
   const onDetail = (id) => {
-    history?.push(`/detail?domainId=${id}&noSearch=1`);
+    history?.push(`/beforeDetail?domainId=${id}&noSearch=1`);
   };
   return (
     <>

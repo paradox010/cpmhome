@@ -27,7 +27,7 @@ export default () => {
     window.open('http://121.37.179.208:8002/', 'target');
   };
   const goStand = (id) => {
-    history?.push(`/detail?domainId=${id}&noSearch=1`);
+    history?.push(`/beforeDetail?domainId=${id}&noSearch=1`);
   };
   const clickSearch = (e: React.MouseEvent) => {
     e.preventDefault();

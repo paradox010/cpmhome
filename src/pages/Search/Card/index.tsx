@@ -58,15 +58,15 @@ function renderTitle(item) {
   return item.name;
 }
 export default ({ item }) => {
-  let href = `/detail?domainId=${item.id}`;
+  let href = `/beforeDetail?domainId=${item.id}`;
   switch (`${item.type}`) {
     case '3':
     case '4':
-      href = `/detail?domainId=${item.domainReleaseId}&selected=${item.id}`;
+      href = `/beforeDetail?domainId=${item.domainReleaseId}&selected=${item.id}`;
       break;
     case '5':
     case '6':
-      href = `/detail?domainId=${item.domainReleaseId}&selected=${item.categoryReleaseId}`;
+      href = `/beforeDetail?domainId=${item.domainReleaseId}&selected=${item.categoryReleaseId}`;
       break;
     default:
       break;

@@ -76,7 +76,7 @@ export default function BasicLayout({ children, location }) {
       menuDataRender={() => [
         {
           name: '申报',
-          path: '/',
+          path: '/certification',
           icon: <IdcardOutlined style={{ fontSize: 20, verticalAlign: -5 }} />,
         },
       ]}

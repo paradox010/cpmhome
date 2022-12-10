@@ -11,12 +11,43 @@
   .headerTitle {
     font-size: 22px;
     line-height: 1.571;
+    font-weight: bold;
+    :global {
+      .ant-select {
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .descriptions {
+    :global {
+      .ant-descriptions-item-label {
+        padding: 12px 24px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .ant-descriptions-item-content {
+        font-size: 16px;
+      }
+    }
+  }
+  li {
+    list-style: none;
+    > span:first-child {
+      color: #000;
+      min-width: 112px;
+      text-align: right;
+      display: inline-block;
+    }
+  }
+  li + li {
+    margin-top: 10px;
   }
 }
 .desLabel {
   display: inline-block;
-  padding-right: 10px;
-  min-width: 150px;
+  padding-right: 26px;
+  // min-width: 150px;
   color: rgb(159, 159, 159);
   font-size: 14px;
 }

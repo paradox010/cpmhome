@@ -7,7 +7,9 @@ import React from 'react';
 const Home = lazy(() => import('@/pages/Home'));
 const Search = lazy(() => import('@/pages/Search'));
 const Cpm = lazy(() => import('@/pages/Cpm'));
+const BeforeCpm = lazy(() => import('@/pages/Cpm/Abstract'));
 const Certification = lazy(() => import('@/pages/Certification'));
+const CertiCheck = lazy(() => import('@/pages/Certification/Table'));
 const Login = lazy(() => import('@/pages/User/Login'));
 
 const NotFound = lazy(() => import('@/components/NotFound'));
@@ -57,6 +59,13 @@ const routerConfig: DRouterConfig[] = [
         component: Search,
       },
       {
+        path: '/beforeDetail',
+        menuConfig: {
+          name: '标准详情',
+        },
+        component: BeforeCpm,
+      },
+      {
         path: '/detail',
         menuConfig: {
           name: '标准详情',
@@ -69,6 +78,13 @@ const routerConfig: DRouterConfig[] = [
           name: '认证',
         },
         component: Certification,
+      },
+      {
+        path: '/certiCheck',
+        menuConfig: {
+          name: '确认认证信息',
+        },
+        component: CertiCheck,
       },
       {
         path: '/',

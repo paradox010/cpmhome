@@ -1,0 +1,101 @@
+@import '@/style/tool.less';
+
+.main {
+  font-size: 14px;
+  padding-top: 24px;
+  .defaultWidth();
+}
+.content {
+  margin-top: 0.8rem;
+  background-color: #fff;
+  // padding: 1.6rem 24px 24px;
+  .headerTitle {
+    line-height: 32px;
+    padding: 10px 24px;
+    border-bottom: 1px solid #efefef;
+    font-weight: bold;
+    font-size: 14px;
+    :global {
+      .ant-btn {
+        float: right;
+      }
+    }
+  }
+  .groupTitle {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  .uploadItem {
+    :global {
+      .ant-form-item-control-input-content {
+        display: flex;
+        &::before {
+          content: '';
+          width: 100px;
+          height: 100px;
+          display: inline-block;
+          margin-right: 17px;
+          background: #eee;
+        }
+      }
+      .ant-upload-list {
+        width: 400px;
+      }
+    }
+  }
+  .uploadText {
+    position: absolute;
+    display: block;
+    white-space: nowrap;
+    left: 0;
+    top: 50px;
+    color: #888;
+  }
+  :global {
+    .ant-upload.ant-upload-select-picture-card {
+      height: 40px;
+      margin-bottom: 34px;
+      position: relative;
+    }
+    .ant-form-item {
+      margin-bottom: 30px;
+    }
+    // .ant-form-item-explain {
+    //   position: absolute;
+    //   top: 75px;
+    //   background: #fff;
+    // }
+  }
+}
+
+.tableWrap {
+  background-color: #fff;
+  padding: 40px 70px;
+  .tableTitle {
+    font-size: 26px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 24px;
+    text-align: center;
+  }
+  :global {
+    .ant-descriptions {
+      margin-top: 30px;
+    }
+    .ant-descriptions-bordered .ant-descriptions-item-label {
+      width: 104px;
+      color: #000;
+      line-height: 22px;
+    }
+    .ant-descriptions-bordered .ant-descriptions-item-content {
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.65);
+      line-height: 22px;
+      max-width: 0;
+    }
+    .ant-descriptions-bordered .ant-descriptions-item-label,
+    .ant-descriptions-bordered .ant-descriptions-item-content {
+      padding: 16px 18px;
+    }
+  }
+}
