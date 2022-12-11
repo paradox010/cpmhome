@@ -5,14 +5,16 @@ import { getParams, appendSearch } from '@/utils/location';
 
 import styles from './index.module.less';
 import { Breadcrumb, Button, Descriptions, Select } from 'antd';
+import store from '@/store';
 
 async function getTree() {
   const resData = await request({
-    url: `/api/home/productCategoryRelease/getTree?domainId=${getParams()?.domainId}`,
+    url: `/api/home/domainRelease/info?domainId=${getParams()?.domainId}`,
   });
   return resData;
 }
 const Abstract = () => {
+  const [user] = store.useModel('user');
   const { data } = useRequest(getTree);
   const goDetail = () => {
     history?.push(`/detail${appendSearch()}`);
@@ -42,9 +44,12 @@ const Abstract = () => {
               },
             ]}
           />
-          <Button onClick={goDetail} type="primary" style={{ float: 'right' }}>
-            查看
-          </Button>
+          {user?.userId && (
+            <Button onClick={goDetail} type="primary" style={{ float: 'right' }}>
+              查看
+            </Button>
+          )}
+
           {/* <span className="ds-version">V{data?.domain?.version}</span> */}
         </div>
         <div>
@@ -57,11 +62,21 @@ const Abstract = () => {
           <Descriptions.Item label="专家小组">
             <li>
               <span>专家小组组长：</span>
-              <span>123</span>
+              <span>
+                {data?.teamUser
+                  ?.filter((v) => v.roleId === '2001')
+                  .map((v) => v.userName)
+                  .join('；')}
+              </span>
             </li>
             <li>
               <span>专家小组成员：</span>
-              <span>时间点fiosd</span>
+              <span>
+                {data?.teamUser
+                  ?.filter((v) => v.roleId === '2002')
+                  .map((v) => v.userName)
+                  .join('；')}
+              </span>
             </li>
           </Descriptions.Item>
         </Descriptions>
@@ -69,15 +84,15 @@ const Abstract = () => {
           <Descriptions.Item label="版本信息">
             <li>
               <span>版本贡献专家：</span>
-              <span>123</span>
+              <span>{data?.versionExpert?.join('；')}</span>
             </li>
             <li>
               <span>版本概述：</span>
-              <span>时间点fiosd</span>
+              <span>{data?.description}</span>
             </li>
             <li>
               <span>版本修订记录：</span>
-              <span>时间点fiosd</span>
+              <span>{data?.fileUrl ? <a>sdf</a> : '-'}</span>
             </li>
           </Descriptions.Item>
         </Descriptions>

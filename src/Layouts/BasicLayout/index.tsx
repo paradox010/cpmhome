@@ -5,6 +5,8 @@ import { asideMenuConfig } from './menuConfig';
 import { Avatar, Image } from 'antd';
 import { SmileOutlined, IdcardOutlined, UserOutlined } from '@ant-design/icons';
 
+import AvatarDropDown from '@/components/HeaderDropDown/AvatarDropDown';
+
 import styles from './index.module.less';
 
 const footerLinks = [
@@ -88,10 +90,7 @@ export default function BasicLayout({ children, location }) {
       }}
       logo={false}
       rightContentRender={() => (
-        <div style={{ fontSize: 14, margin: '0 10px' }}>
-          <Avatar style={{ color: '#1890ff', backgroundColor: '#e6f7ff' }} icon={<UserOutlined />} />
-          <span style={{ marginLeft: 10 }}>管理员</span>
-        </div>
+        <AvatarDropDown />
       )}
       footerRender={() => (
         <div className={styles.footer}>

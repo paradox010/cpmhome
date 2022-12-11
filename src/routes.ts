@@ -4,13 +4,16 @@ import BLayout from '@/Layouts/BlankLayout';
 // import { SmileOutlined, HeartOutlined } from '@ant-design/icons';
 import React from 'react';
 
+const Login = lazy(() => import('@/Layouts/UserLayout/Login'));
+const NewPassword = lazy(() => import('@/Layouts/UserLayout/NewPassword'));
+
+
 const Home = lazy(() => import('@/pages/Home'));
 const Search = lazy(() => import('@/pages/Search'));
 const Cpm = lazy(() => import('@/pages/Cpm'));
 const BeforeCpm = lazy(() => import('@/pages/Cpm/Abstract'));
 const Certification = lazy(() => import('@/pages/Certification'));
 const CertiCheck = lazy(() => import('@/pages/Certification/Table'));
-const Login = lazy(() => import('@/pages/User/Login'));
 
 const NotFound = lazy(() => import('@/components/NotFound'));
 
@@ -24,19 +27,25 @@ interface DRouterConfig extends IRouterConfig {
 }
 
 const routerConfig: DRouterConfig[] = [
-  // {
-  //   path: '/user',
-  //   component: BLayout,
-  //   children: [
-  //     {
-  //       path: '/login',
-  //       component: Login,
-  //       menuConfig: {
-  //         name: '登陆',
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    path: '/user',
+    component: BLayout,
+    children: [
+      {
+        path: '/login',
+        component: Login,
+      },
+      {
+        path: '/newPassword',
+        component: NewPassword,
+      },
+      {
+        path: '/',
+        exact: true,
+        redirect: '/user/login',
+      },
+    ],
+  },
   {
     path: '/',
     component: Layout,
