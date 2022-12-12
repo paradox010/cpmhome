@@ -42,7 +42,15 @@ export default () => {
         <div className={styles.content}>
           <div className={styles.headerTitle}>
             专家申报信息上传
-            <Button type="primary">下载模版</Button>
+            <Button type="primary">
+              <a
+                download
+                // eslint-disable-next-line max-len
+                href="https://file.dvolution.com/file/product-knowledge-management/template/%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E4%BA%A7%E5%93%81%E4%B8%BB%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%BA%E5%9F%9F%E6%8E%A8%E8%BF%9B%E7%BB%84%E8%A1%8C%E4%B8%9A%E4%B8%93%E5%AE%B6%E7%94%B3%E8%AF%B7%E8%A1%A8.docx"
+              >
+                模板下载
+              </a>
+            </Button>
           </div>
           <Form
             {...formItemLayout}

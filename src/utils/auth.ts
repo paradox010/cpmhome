@@ -3,11 +3,15 @@ import store from '../store';
 const tokenName = 'token';
 
 export function outLogin() {
-  let token;
+  setToken('');
+  // removeToken()
+}
+
+function removeToken() {
   if (process.env.NODE_ENV === 'development') {
-    token = sessionStorage.setItem(tokenName, '');
+    sessionStorage.removeItem(tokenName);
   } else {
-    token = localStorage.setItem(tokenName, '');
+    localStorage.removeItem(tokenName);
   }
 }
 
@@ -32,7 +36,7 @@ export function getToken() {
   if (process.env.NODE_ENV === 'development') {
     token = sessionStorage.getItem(tokenName);
   } else {
-    token = localStorage.segetItemtItem(tokenName);
+    token = localStorage.getItem(tokenName);
   }
   return token;
 }

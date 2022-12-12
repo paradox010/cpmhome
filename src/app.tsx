@@ -1,7 +1,7 @@
 import { runApp, IAppConfig, request, history } from 'ice';
 import { message } from 'antd';
 // const delay = (time) => new Promise((resolve) => setTimeout(() => resolve(1), time));
-import { getToken } from './utils/auth';
+import { getToken, outLogin, setToken } from './utils/auth';
 
 const appConfig: IAppConfig = {
   app: {
@@ -63,6 +63,7 @@ const appConfig: IAppConfig = {
           //   //errro
           // }
           if (response.data?.header.code !== 200) {
+            message.error(response.data?.header?.message);
             return Promise.reject(response.data?.header);
           }
           response.data = response.data.body;
