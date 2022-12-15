@@ -17,6 +17,11 @@ const appConfig: IAppConfig = {
               Token: token,
             },
           });
+          if (resData.isFirstLogin) {
+            history?.push({
+              pathname: '/user/newPassword',
+            });
+          }
           return {
             initialStates: {
               user: { ...resData, token },

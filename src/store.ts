@@ -4,6 +4,7 @@ interface User {
   userId?: string;
   userName?: string;
   token?: string;
+  isFirstLogin?: boolean;
 }
 const initState = {} as any as User;
 const store = createStore({

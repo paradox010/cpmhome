@@ -1,5 +1,6 @@
 import { IRouterConfig, lazy } from 'ice';
 import Layout from '@/Layouts/BasicLayout';
+import ULayout from '@/Layouts/BasicLayout/UserL';
 import BLayout from '@/Layouts/BlankLayout';
 // import { SmileOutlined, HeartOutlined } from '@ant-design/icons';
 import React from 'react';
@@ -29,7 +30,7 @@ interface DRouterConfig extends IRouterConfig {
 const routerConfig: DRouterConfig[] = [
   {
     path: '/user',
-    component: BLayout,
+    component: ULayout,
     children: [
       {
         path: '/login',
