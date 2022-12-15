@@ -1,4 +1,4 @@
-import { runApp, IAppConfig, request, history } from 'ice';
+import { config, runApp, IAppConfig, request, history } from 'ice';
 import { message } from 'antd';
 // const delay = (time) => new Promise((resolve) => setTimeout(() => resolve(1), time));
 import { getToken, outLogin, setToken } from './utils/auth';
@@ -41,17 +41,24 @@ const appConfig: IAppConfig = {
   router: {
     type: 'browser',
     fallback: <div>loading....</div>,
+    basename: config.basename,
   },
   request: {
-    baseURL: '/',
+    baseURL: config.baseURL,
     headers: {},
     // withFullResponse: true,
     interceptors: {
       request: {
-        onConfig: (config) => {
+        onConfig: (cg) => {
           // eslint-disable-next-line no-param-reassign
-          // config.headers = { a: 1 };
-          return config;
+          const token = getToken();
+          if (token) {
+            cg.headers = {
+              ...(cg.headers || {}),
+              Token: token,
+            };
+          }
+          return cg;
         },
         onError: (error) => {
           return Promise.reject(error);

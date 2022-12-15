@@ -1,6 +1,6 @@
 import store from '../store';
 
-const tokenName = 'token';
+const tokenName = 'homeToken';
 
 export function outLogin() {
   setToken('');

@@ -30,7 +30,7 @@ const Login = () => {
       // if (redirect) {
       //   window.location.assign(redirect);
       // } else {
-        window.location.assign('/');
+      window.location.assign('/');
       // }
     },
     onError: () => {

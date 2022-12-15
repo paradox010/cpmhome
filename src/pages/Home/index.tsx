@@ -24,7 +24,7 @@ export default () => {
   };
 
   const goTo = () => {
-    window.open('http://121.37.179.208:8002/', 'target');
+    window.open(process.env.EXPERTURL, 'target');
   };
   const goStand = (id) => {
     history?.push(`/beforeDetail?domainId=${id}&noSearch=1`);
@@ -38,6 +38,7 @@ export default () => {
   return (
     <>
       <div className={styles.search}>
+        <video className="show" src="./banner333333.mp4" width="100%" height="100%" autoPlay muted loop />
         <div className={styles.searchContent}>
           <div className={styles.title}>浙江省工业产品主数据管理平台</div>
           <div className={styles.subTitle}>让产业触手可及 让互联随时发生</div>
@@ -113,7 +114,9 @@ export default () => {
                         >
                           {k.domainName}
                         </Typography.Text> */}
-                        <span className="ds-version">{k.domainVersion ? `版本号：V${k.domainVersion}` : '版本号：- '}</span>
+                        <span className="ds-version">
+                          {k.domainVersion ? `版本号：V${k.domainVersion}` : '版本号：- '}
+                        </span>
                         <div className={styles.subAttr}>
                           <div className={styles.border}>
                             <Statistic title="产品类目" value={k.categoryCount || '-'} />

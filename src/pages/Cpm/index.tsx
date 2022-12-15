@@ -42,7 +42,6 @@ export default () => {
           <div className={styles.headerTitle}>
             {data?.domain?.name}
             <Select
-              size="large"
               value={`V${data?.domain?.version || ''}`}
               options={[
                 {

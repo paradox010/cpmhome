@@ -11,11 +11,21 @@
   background-image: url('@/assets/bannerBg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: fill;
+  }
 }
 
 .searchContent {
   .defaultWidth();
   padding-top: 3.3rem;
+  position: relative;
   .title {
     font-size: 1.8rem;
     line-height: 1.4;
@@ -238,13 +248,15 @@
   overflow: hidden;
 }
 
-@squaHeight: 10px;
-@csquaHeight: 9px;
+@squaHeight: 0.8rem;
+@csquaHeight: calc(0.8rem - 1px);
+
 .cardTag {
   position: absolute;
   transform: rotate(45deg);
-  right: -22px;
-  top: 0;
+  right: -1.5rem;
+  top: 0.3rem;
+  line-height: 1;
   &:before {
     content: '';
     display: block;
@@ -252,7 +264,7 @@
     width: 2px;
     height: 2px;
     background: #bcbcbc;
-    bottom: 0;
+    bottom: 1px;
     left: 1px;
     transform: rotate(45deg);
   }
@@ -263,7 +275,7 @@
     width: 2px;
     height: 2px;
     background: #bcbcbc;
-    bottom: 0;
+    bottom: 1px;
     right: 1px;
     transform: rotate(45deg);
     z-index: -1;
@@ -277,14 +289,13 @@
     border-right: @squaHeight solid #b7eb8f;
     position: relative;
     display: inline-block;
-    transform: translate(0px, 5px);
     span {
       display: block;
       width: 0;
       height: 0;
       position: absolute;
-      left: -8px;
-      top: -9px;
+      left: calc(-0.8rem + 2px);
+      top: calc(-0.8rem + 1px);
       border-top: @csquaHeight solid transparent;
       border-left: @csquaHeight solid transparent;
       border-bottom: @csquaHeight solid #f6ffed;
@@ -300,14 +311,13 @@
     border-left: @squaHeight solid #b7eb8f;
     position: relative;
     display: inline-block;
-    transform: translate(0px, 5px);
     span {
       display: block;
       width: 0;
       height: 0;
       position: absolute;
-      left: -11px;
-      top: -9px;
+      left: calc(-0.8rem + 0px);
+      top: calc(-0.8rem + 1px);
       border-top: @csquaHeight solid transparent;
       border-right: @csquaHeight solid transparent;
       border-bottom: @csquaHeight solid #f6ffed;
@@ -319,19 +329,20 @@
     background: #f6ffed;
     border: 1px solid #b7eb8f;
     border-left: none;
-    line-height: 18px;
-    width: 30px;
-    height: 20px;
-    vertical-align: -5px;
+    border-right: none;
+    width: 2rem;
+    height: 1.6rem;
   }
   .borderText {
+    width: 100%;
     position: absolute;
+    top: 0;
     color: #52c41a;
-    font-size: 12px;
-    top: 7px;
-    left: 17px;
     z-index: 1;
+    font-size: 0.8rem;
     font-weight: bold;
+    line-height: 2em;
+    text-align: center;
   }
   &.blue {
     .borderUp {
@@ -346,13 +357,13 @@
       border-bottom: @squaHeight solid #ffe58f;
       border-left: @squaHeight solid #ffe58f;
       span {
-        border-bottom: @squaHeight solid #fffbe6;
-        border-left: @squaHeight solid #fffbe6;
+        border-bottom: @csquaHeight solid #fffbe6;
+        border-left: @csquaHeight solid #fffbe6;
       }
     }
     .borderCenter {
       background: #fffbe6;
-      border: 1px solid #ffe58f;
+      border-color: #ffe58f;
     }
     .borderText {
       color: #d97a1f;
@@ -377,6 +388,7 @@
   .defaultWidth();
   /* stylelint-disable-next-line no-descending-specificity */
   .title {
+    padding-right: 1px;
     font-size: 1.1rem;
     line-height: 1.1;
     font-weight: 500;

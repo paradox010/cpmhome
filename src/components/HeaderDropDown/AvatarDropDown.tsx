@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/indent */
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin, Dropdown } from 'antd';
-import { stringify } from 'querystring';
+import { stringify } from 'qs';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React from 'react';
 import styles from './index.module.less';
@@ -28,12 +28,12 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu = true }) => {
     const redirect = urlParams.get('redirect');
     // Note: There may be security issues, please note
     if (window.location.pathname !== '/user/login' && !redirect) {
-      history?.replace({
-        pathname: '/user/login',
-        search: stringify({
-          redirect: pathname + search,
-        }),
-      });
+      // history?.replace({
+      //   pathname: '/user/login',
+      //   search: stringify({
+      //     redirect: pathname + search,
+      //   }),
+      // });
     }
   };
 
@@ -91,7 +91,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu = true }) => {
   const menuHeaderDropdown = <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick} items={menuItems} />;
 
   return user?.userId ? (
-    <Dropdown overlay={menuHeaderDropdown}>
+    <Dropdown overlay={menuHeaderDropdown} trigger={['click']}>
       <div className={`${styles.action} ${styles.account}`}>
         <Avatar icon={<UserOutlined />} alt="avatar" />
         <span>{user?.userName}</span>
